@@ -18,7 +18,7 @@ var imageURL = require('../images/yeoman.png');
 var MonkeyParserIiApp = React.createClass({
     getInitialState: function () {
         return {
-            loginStatus: 1
+            loginStatus: 0
         };
     },
     initialize: function () {
@@ -55,30 +55,22 @@ var MonkeyParserIiApp = React.createClass({
         });
     },
     render: function() {
+        var mainContainer = null;
         if (this.state.loginStatus === 0) {
             this.initialize();
-            return (
-              <div className='main'>
-                <Navbar>
-                    <Nav>
-                        <NavItem eventKey={1} href="#">搜尋告白/靠北</NavItem>
-                    </Nav>
-                </Navbar>
-              </div>
-            );
         } else if (this.state.loginStatus === 1) {
-        	this.initialize();
-            return (
-              <div className='main'>
-                <Navbar>
-                    <Nav>
-                        <NavItem eventKey={1} href="#">搜尋告白/靠北</NavItem>
-                    </Nav>
-                </Navbar>
-                <Container />
-              </div>
-            );
+            mainContainer = <Container />;
         }
+        return (
+          <div className='main'>
+            <Navbar>
+                <Nav>
+                    <NavItem eventKey={1} href="#">搜尋告白/靠北</NavItem>
+                </Nav>
+            </Navbar>
+            {mainContainer}
+          </div>
+        );
     }
 });
 React.render(<MonkeyParserIiApp />, document.getElementById('content')); // jshint ignore:line
